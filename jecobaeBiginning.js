@@ -64,3 +64,140 @@ console.log(result);
   ***** 빈칸 2개, 별 5개 
  ******* 빈칸 1개, 별 7개
 ********* 빈칸 0개, 별 9개*/
+
+//문제 11
+//1부터 100까지 모두 더하는 Code를 <pass> 부분에 완성하세요. for를 사용해야 합니다.
+
+let s = 0;
+
+for (let i = 1; i <= 100; i++) {
+  // s += i;
+}
+console.log(s);
+
+//문제 12
+//다음 소스코드에서 클래스를 작성하여 게임 캐릭터의 능력치와 '파이어볼'이 출력되게 만드시오.
+
+const Wizard = class Wizard {
+  constructor(health, mana, armor) {
+    this.health = health;
+    this.mana = mana;
+    this.armor = armor;
+  }
+
+  attack() {
+    console.log("파이어볼");
+  }
+};
+const x = new Wizard(545, 210, 10);
+//console.log(x.health, x.mana, x.armor);
+//x.attack();
+
+//문제 13. 우리 태양계를 이루고 있는 행성은 수성, 금성, 지구, 화성, 목성, 토성, 천왕성, 해왕성으로 총 8개 입니다. 저희는 우리 태양계의 n번째 행성이 무엇인지 알고 싶습니다.
+
+//1) 배열 선언
+//2) 함수 선언 param : 숫자(배열인덱스)
+//3) return : 배열인덱스-1의 값
+
+let planet = [
+  "수성",
+  "금성",
+  "지구",
+  "화성",
+  "목성",
+  "토성",
+  "천왕성",
+  "해왕성",
+];
+
+const planetName = function (param) {
+  return planet[param - 1];
+};
+
+console.log(planetName(1));
+
+//문제 14. 3의 배수라면 '짝'이라는 글자를, 3의 배수가 아니라면 n을 그대로 출력해 주세요.
+
+// 1) function 선언, parma : 숫자, return 홀, 짝
+// 2) if문 3의 배수일 때, 아닐 때
+
+const numberGame = function (param) {
+  if (param % 3 === 0) {
+    return "짝";
+  } else {
+    return param;
+  }
+};
+
+console.log(numberGame(100));
+
+//문제 15. 만약 입력으로 김다정이라는 이름이 주어지면 "안녕하세요. 저는 김다정입니다."라고 출력
+const selfIntroduce = function (param) {
+  if ((param = "김다정")) {
+    console.log("안녕하세요. 저는 김다정입니다.");
+  }
+};
+
+//selfIntroduce("김다정");
+
+//문제 16. 문장이 입력되면 거꾸로 출력하는 프로그램을 만들어 봅시다.
+// 함수 선언 param: string, return : 없음
+const upsideDown = function (param) {
+  let array = param.split("");
+  console.log(array.reverse().join(""));
+};
+//upsideDown("거꾸로");
+
+//1. split('') : split 괄호 안에 있는 것을 기준으로 string을 잘라 배열의 각 원소로 지정하고, 그 배열을 반환한다.
+//2. array.reverse() : 배열의 정렬을 거꾸로 한다
+//3. array.join('') : 배열의 원소를 붙여 string으로 반환
+
+//문제 16. 놀이기구 키 제한
+let height = 160;
+
+if (height > 150) {
+  //console.log("YES");
+} else {
+  // console.log("NO");
+}
+
+//문제 17. 공백으로 구분하여 세 과목의 점수가 주어지면 전체 평균 점수를 구하는 프로그램을 작성하세요. 단, 소숫점 자리는 모두 버립니다.
+let score = "20 30 40";
+const average = function (score) {
+  let array = score.split(" ");
+  let total = 0;
+  for (let i = 0; i < array.length; i++) {
+    total += parseInt(array[i], 10);
+  }
+  return Math.floor(total / array.length);
+};
+
+console.log(average(score));
+
+//String을 숫자로 변환해줄 때, parseInt(숫자, 10) 해주기
+//Math.floor(숫자) : 버림
+//Math.ceil(숫자) : 올림
+//Math.round(숫자) : 반올림
+
+//문제 19. 공백으로 구분하여 두 숫자 a와 b가 주어지면, a의 b승을 구하는 프로그램을 작성하세요.
+
+let param = "7 3";
+const square = function (param) {
+  let array = param.split(" ");
+  let a = parseInt(array[0], 10);
+  let b = parseInt(array[1], 10);
+  console.log(Math.pow(a, b));
+};
+//square(param);
+// Math.pow(밑, 지수)
+
+//문제 20. 두번째 숫자로 첫번째 숫자를 나누었을 때 그 몫과 나머지를 공백으로 구분하여 출력하세요.
+
+let num = "10 2";
+const division = function (param) {
+  let array = param.split(" ");
+  let a = parseInt(array[0], 10);
+  let b = parseInt(array[1], 10);
+  console.log(a / b + " " + (a % b));
+};
+division(num);
