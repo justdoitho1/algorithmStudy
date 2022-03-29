@@ -200,4 +200,116 @@ const division = function (param) {
   let b = parseInt(array[1], 10);
   console.log(a / b + " " + (a % b));
 };
-division(num);
+//division(num);
+
+//문제 21. JavaScript Class
+
+//문제 24. 민지를 위해 이름이 입력되면 전부 대문자로 출력되는 프로그램을 만들어주세요.
+// 대문자로 : string.toUpperCase()
+// 소문자로 : string.toLowerCase()
+const upper = function (param) {
+  console.log(param.toUpperCase());
+};
+//upper("mary");
+
+//문제 25. 원의 넓이를 구하라
+const circle = function (param) {
+  return param * param * 3.14;
+};
+//console.log(circle(3));
+
+//문제 26. 행성의 한글 이름을 입력하면 영어 이름을 반환하는 프로그램을 만들어 주세요.
+let korPlanets = [
+  "수성",
+  "금성",
+  "지구",
+  "화성",
+  "목성",
+  "토성",
+  "천왕성",
+  "해왕성",
+];
+let engPlanets = [
+  "Mercury",
+  "Venus",
+  "Earth",
+  "Mars",
+  "Jupiter",
+  "Saturn",
+  "Uranus",
+  "Neptune",
+];
+
+// param : 한글 / return : 영어
+// indexof 활용
+// 입력된 값이 korPlanet에 존재하면, index를 받아옴
+// 받아온index로 eng Planet에서 값 찾음
+
+const planets = function (params) {
+  let idx = 0;
+  if (korPlanets.indexOf(params) > -1) {
+    idx = korPlanets.indexOf(params);
+    return engPlanets[idx];
+  } else {
+    console.log("해당하는 행성을 찾을 수 없습니다.");
+  }
+};
+//console.log(planets("천왕성"));
+
+//답안. 더 빠른 방식인 듯.
+
+const planetsObj = {
+  수성: "Mercury",
+  금성: "Venus",
+  지구: "Earth",
+  화성: "Mars",
+  목성: "Jupiter",
+  토성: "Saturn",
+  천왕성: "Uranus",
+  해왕성: "Neptune",
+};
+
+//console.log(planetsObj["수성"]);
+
+//문제 27
+const student = {
+  Yujin: 70,
+  Hyewon: 100,
+};
+
+//console.log(student);
+
+//문제 28
+
+const twoGram = function (param) {
+  let array = param.split("");
+
+  for (let i = 0; i < array.length - 1; i++) {
+    console.log(array[i] + " " + array[i + 1]);
+  }
+};
+//twoGram("JavaScript");
+
+//문제 29
+const LowerUpper = function (param) {
+  if (param === param.toUpperCase()) {
+    console.log("Yes");
+  } else {
+    console.log("No");
+  }
+};
+
+//LowerUpper("s");
+
+//문제 30
+const findWord = function (param, word) {
+ // console.log(param.search(word));
+ // console.log(param.indexOf(word));
+  if (param.search(word) > -1) {
+    return param.search(word);
+  } else {
+    return "없음";
+  }
+};
+
+console.log(findWord("pineapple is yummy", "apple"));
