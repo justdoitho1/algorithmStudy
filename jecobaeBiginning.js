@@ -303,8 +303,8 @@ const LowerUpper = function (param) {
 
 //문제 30
 const findWord = function (param, word) {
- // console.log(param.search(word));
- // console.log(param.indexOf(word));
+  // console.log(param.search(word));
+  // console.log(param.indexOf(word));
   if (param.search(word) > -1) {
     return param.search(word);
   } else {
@@ -312,4 +312,128 @@ const findWord = function (param, word) {
   }
 };
 
-console.log(findWord("pineapple is yummy", "apple"));
+//console.log(findWord("pineapple is yummy", "apple"));
+
+//문제 32
+//혜림이를 위해 문자열을 입력받으면 단어의 갯수를 출력하는 프로그램을 작성해 주세요.
+
+const stringLength = function (param) {
+  return param.split(" ").length;
+};
+let sentence = "안녕하세요. 저는 제주대학교 컴퓨터공학전공 혜림입니다.";
+
+//console.log(stringLength(sentence));
+
+//33. 거꾸로출력하기
+//한 줄에 여러개의 숫자가 입력되면, 역순으로 그 숫자들을 하나씩 출력하는 프로그램을 작성하시오.
+
+const reversePrint = function (param) {
+  return param.split(" ").reverse();
+};
+
+//console.log(reversePrint("1 2 3 4 5"));
+
+//34.민주를 위해 키가 주어지면 순서대로 제대로 섰는지 확인하는 프로그램을 작성해보자.
+const checkHeight = function (param) {
+  //  console.log(param.split(" ").sort());
+  if (param === param.split(" ").sort()) {
+    console.log("YES");
+  } else {
+    console.log("NO");
+  }
+};
+
+//checkHeight("155 156 165 166 169 176");
+
+//param === param.split(" ").sort() 이런 방식은 먹히지 않는다.
+
+// 배열 비교
+// 1. JSON.stringify
+// 객체, 배열을 json으로 변환해준다.
+//JSON.stringify(obj); //"{"x":1, "y":3}"
+//따라서 배열도 stringify처리, 즉 문자열로 만들어서 비교할 수 있다.
+const checkHeightJson = function (param) {
+  console.log();
+  if (
+    JSON.stringify(param.split(" ").sort()) === JSON.stringify(param.split(" "))
+  ) {
+    console.log(JSON.stringify(param.split(" ")));
+    //["155","156","165","166","169","176"]
+    console.log(param.split(" "));
+    console.log("YES");
+  } else {
+    console.log("NO");
+  }
+};
+
+//checkHeightJson("155 156 165 166 169 176");
+
+const unsorted = "158 156 165 166 169 176";
+let sorted = "";
+
+sorted = unsorted
+  .split(" ")
+  .sort(function (a, b) {
+    return a - b;
+  })
+  .join(" ");
+
+console.log(
+  unsorted.split(" ").sort(function (a, b) {
+    return a - b;
+  })
+);
+if (unsorted === sorted) {
+  console.log("Yes");
+} else {
+  console.log("No");
+}
+
+// sort() 정리
+
+// array.sort() => 유니코드를 기준으로 정렬하기 때문에, 내가 아는 오름차순, 내림차순이 나온다고 보장할 수 없음
+//따라서 sort 안에 파라미터로 function을 지정함으로써 원하는 정려릉 할 수 있음.
+// 오름차순으로 정렬할 때는
+const compare = function (a, b) {
+  return a - b;
+};
+//이 function을 사용하면 된다.
+// a < b 면 -1을 return => a가 먼저 온다. 즉 오름차순 정렬
+// a > b 면 1을 return => b가 먼저 온다. 즉 오름차순 정렬
+// a == b  0을 return 일 경우, 얘네만 두고 다른 거 정렬함
+// sort에서 0, -1, 1을 인식해서 저렬한다.
+
+//내림차순의 경우
+const compare2 = function (a, b) {
+  return b - a;
+};
+//https://hianna.tistory.com/409
+var stringArray = ["Blue", "Humpback", "Beluga"];
+var numericStringArray = ["80", "9", "700"];
+var numberArray = [40, 1, 5, 200];
+var mixedNumericArray = ["80", "9", "700", 40, 1, 5, 200];
+
+function compareNumbers(a, b) {
+  return a - b;
+}
+
+console.log("stringArray:", stringArray.join());
+console.log("Sorted:", stringArray.sort());
+
+console.log("numberArray:", numberArray.join());
+console.log("Sorted without a compare function:", numberArray.sort());
+console.log("Sorted with compareNumbers:", numberArray.sort(compareNumbers));
+
+console.log("numericStringArray:", numericStringArray.join());
+console.log("Sorted without a compare function:", numericStringArray.sort());
+console.log(
+  "Sorted with compareNumbers:",
+  numericStringArray.sort(compareNumbers)
+);
+
+console.log("mixedNumericArray:", mixedNumericArray.join());
+console.log("Sorted without a compare function:", mixedNumericArray.sort());
+console.log(
+  "Sorted with compareNumbers:",
+  mixedNumericArray.sort(compareNumbers)
+);
