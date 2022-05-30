@@ -119,3 +119,53 @@ function sumZero(arr) {
 }
 
 sumZero([-4, -3, -52, 41, 0, 1, 2, 3, 10]);
+
+// console.log(countUniqueValues2(arr));
+/**
+ * Mutiple Pointer 연습
+ * @param {} rowArr
+ * @returns
+ */
+//포인터를 앞에다 두고 뒤로 이동시키면서 독립된 값을 찾을 때
+//정렬된 배열에서만 이용 가능
+
+function countUniqueValues(rowArr) {
+  const arr = rowArr.sort(function (a, b) {
+    return a - b;
+  });
+
+  console.log(arr);
+  if (arr.length === 0) return 0;
+  //첫 번째 포인터 i 설정. 배열의 첫 번째 원소
+  let i = 0;
+  //두 번째 포인터 j 설정. 배열의 두 번째 원소.
+  //배열을 한 바퀴 도는 for문 설정.
+  //j는 for문에 따라 배열 끝으로 이동하고, arr[i]와 arr[j] 값이 다를 때 i는 다음 원소로 이동.
+
+  for (let j = 1; j < arr.length; j++) {
+    console.log(`기존 i : ${i} , 기존 j : ${j}`);
+
+    //i번째 원소와 arr[j]의 원소 값이 다를 때 ex) 2, 3
+    if (arr[i] !== arr[j]) {
+      //i의 위치를 오른쪽으로 돌리고, arr[j]를 arr[i]에다가 삽입
+      console.log(`
+  ------------------------------
+  기존 배열 : ${arr}
+  arr[${i}] : ${arr[i]} // arr[${j}] : ${arr[j]} ==> arr[i]와 arr[j]가 같지 않을 때
+  i++`);
+      i++;
+      arr[i] = arr[j];
+      console.log(`
+  arr[${i}] = ${arr[j]} ===>  arr[i] = arr[j];
+  변경후 배열 : ${arr}
+  -----------------------------`);
+    } else {
+      console.log("arr[i]와 arr[j] 같음. j+1로 넘어감");
+    }
+  }
+
+  //유니크한 값들의 개수는 i+1과 같다.
+  return i + 1;
+}
+
+console.log(countUniqueValues([1, 2, 3, 3, 3, 3, 5, 7, 10]));
