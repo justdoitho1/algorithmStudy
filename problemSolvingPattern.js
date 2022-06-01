@@ -122,7 +122,7 @@ sumZero([-4, -3, -52, 41, 0, 1, 2, 3, 10]);
 
 // console.log(countUniqueValues2(arr));
 /**
- * Mutiple Pointer 연습
+ * Mutiple Pointer 연습 
  * @param {} rowArr
  * @returns
  */
@@ -169,3 +169,24 @@ function countUniqueValues(rowArr) {
 }
 
 console.log(countUniqueValues([1, 2, 3, 3, 3, 3, 5, 7, 10]));
+
+/**
+ * 다중 포인터 문제 2 
+ * @param  {...any} args 
+ * @returns 
+ */
+
+function areThereDuplicates(...args) {
+  // Two pointers
+  args.sort((a,b) => a > b);
+  let start = 0;
+  let next = 1;
+  while(next < args.length){
+    if(args[start] === args[next]){
+        return true
+    }
+    start++
+    next++
+  }
+  return false
+}
