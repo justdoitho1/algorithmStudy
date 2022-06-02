@@ -185,8 +185,8 @@ function areThereDuplicates(...args) {
     if(args[start] === args[next]){
         return true
     }
-    start++
-    next++
+    start++;
+    next++;
   }
   return false
 }
