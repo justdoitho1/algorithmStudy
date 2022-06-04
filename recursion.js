@@ -41,4 +41,82 @@ function countDown(num) {
   countDown(num);
 }
 
-countDown(3);
+// countDown(3);
+
+// 재귀함수 예시 2
+
+function sameRange(num) {
+  if (num === 1) return 1;
+  return num + sumRange(num - 1);
+}
+
+/**
+ * 만약 sameRange(3)을 실행하면 return 6
+
+return 3 + sameRange(2) ⇒ 3+ 3⇒ 6
+
+→ 2+ sameRange(1) ⇒3
+
+→ sameRange(1) ⇒  1
+
+마지막 base case 까지 가서 마지막 return을 받고, 더이상 재귀함수가 없을 때 마지막에서 위로 return 값을 받아가면서 올라감. 
+
+재귀를 하면서 가장 많이 발생하는 실수 
+
+1. base code(엔드포인트)를 쓰지 않는다. ⇒ maximum call stack size 오류가 발생함. 
+2. base code에서 잘못된 값을 return함 ⇒ 오류
+3. return을 안 함. ex) console.log(’’)를 해버린다든가. 
+
+call stack에서 call을 지우기 위해서는 return을 주면 됨. !!!!!!!!!
+ */
+
+// 재귀함수 패턴
+// 1. helper 재귀
+// 재귀 함수가 아닌 함수 안에서 재귀 함수를 만들기.
+
+// helper 재귀 예시 : 홀수만 골라낸 배열을 반환하는 함수
+const collectOddValues = (arr) => {
+  //함수를 실행할 때마다 result가 []로 초기화되는 것을 방지하기 위해 할 수 있는 조치들이 있음. 1) result를 외부에서 선언. 그런데 다소 뜬금없는 위치에서 선언하게 될 수 있음. 2. 아래와 같은 재귀함수를 사용함
+  let result = [];
+
+  const helper = (helperInput) => {
+    if (helperInput.length === 0) return;
+
+    if (helperInput[0] % 2 !== 0) {
+      result.push(helperInput[0]);
+    }
+
+    helper(helperInput.slice(1));
+  };
+  helper(arr);
+
+  return result;
+};
+
+console.log(collectOddValues([1, 2, 3, 4]));
+
+//순수 재귀를 사용하기
+const collectOddValues2 = (arr) => {
+  //함수를 실행할 때마다 result가 []로 초기화되는 것을 방지하기 위해 할 수 있는 조치들이 있음. 1) result를 외부에서 선언. 그런데 다소 뜬금없는 위치에서 선언하게 될 수 있음. 2. 아래와 같은 재귀함수를 사용함
+  let newArr = [];
+
+  //return newArr 안 해주면, undefined까지 newArr에 concat된다.
+  if (arr.length === 0) return newArr;
+
+  if (arr[0] % 2 !== 0) {
+    newArr.push(arr[0]);
+  }
+
+  //[1].concat([3,5]); 같은 형태로 반복
+  newArr = newArr.concat(collectOddValues2(arr.slice(1)));
+
+  console.log(newArr);
+  return newArr;
+};
+
+console.log(collectOddValues2([1, 2, 3, 4, 5]));
+
+//순수 재귀 솔루션을 작성하는 경우 아래 메소드를 사용하면 편함
+//배열 :  slice, spread, concat을 사용하면 편함
+//문자열 : slice, substring
+//객체 : Object.assgin, spread
