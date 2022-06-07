@@ -120,3 +120,54 @@ console.log(collectOddValues2([1, 2, 3, 4, 5]));
 //배열 :  slice, spread, concat을 사용하면 편함
 //문자열 : slice, substring
 //객체 : Object.assgin, spread
+
+//재귀 함수를 활용해 지수 구현하기
+// ex. power(2,4) return 16
+function power(num1, num2) {
+  // num1 * num1
+  // num2 === 0 일 때, return 1; 하기
+  if (num2 === 0) {
+    return 1;
+  }
+
+  return num1 * power(num1, num2 - 1);
+  // 2 * (power(2,2) * power(2,1)=> * 1
+  //  2 * (power(2,2) * pow
+}
+
+//console.log(power(2,4));
+
+//재귀 함수를 이용해 팩토리얼 구현하기
+const factorial = (num) => {
+  if (num === 0) {
+    return 1;
+  }
+  return num * factorial(num - 1);
+};
+
+console.log(factorial(7));
+
+//재귀 함수를 이용해 배열 안 모든 값을 곱하기
+
+const productOfArray = (arr) => {
+  if (arr.length === 0) {
+    return 1;
+  }
+  //배열의 마지막 원소
+  let i = arr.length - 1;
+  //마지막 원소를 삭제한 뒤의 새로운 배열
+  let newArr = arr.slice(0, -1);
+
+  return arr[i] * productOfArray(newArr);
+
+  // return : arr[마지막 원소] * productOfArray([새 배열])
+};
+
+const array = [1, 2, 3, 4, 5];
+//productOfArray(array);
+
+//1~입력된 숫자 더하기
+const recursiveRange = (num) => {
+  if (num === 1) return 1;
+  return num + recursiveRange(num - 1);
+};
