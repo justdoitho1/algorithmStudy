@@ -29,22 +29,22 @@ let exBinaryArr = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13];
 //즉, 중간점이 내가 찾는 value가 아니면, value가 중간점보다 큰지 작은지 판단 후, 좌측이나 우측 인덱스를 바꾸고 새로운 중간점을 선택.
 
 // 찾는 value의 index 위치를 반환하는 binarySearch 구현
-const binarySearch = (sortedArr, value) => {
-  let left = 0;
-  let right = sortedArr.legnth - 1;
-  let avgIdx = 0;
-  while (sortedArr[avgIdx] === value) {
-    let avgIdx = Math.floor(left + right / 2);
-    if (sortedArr[avgIdx] > value) {
-      left = avgIdx;
-      console.log(left);
-    } else if (sortedArr[avgIdx] < value) {
-      right = avgIdx;
-      console.log(right);
+function binarySearch(arr, elem) {
+  var start = 0;
+  var end = arr.length - 1;
+  var middle = Math.floor((start + end) / 2);
+  while (arr[middle] !== elem && start <= end) {
+    if (elem < arr[middle]) {
+      end = middle - 1;
+    } else {
+      start = middle + 1;
     }
-    Math.floor(left + right / 2);
+    middle = Math.floor((start + end) / 2);
   }
-  return avgIdx;
-};
+  if (arr[middle] === elem) {
+    return middle;
+  }
+  return -1;
+}
 
 console.log(binarySearch(exBinaryArr, 2));
