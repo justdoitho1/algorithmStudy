@@ -48,3 +48,54 @@ function binarySearch(arr, elem) {
 }
 
 console.log(binarySearch(exBinaryArr, 2));
+
+//주어진 문자열에서 특정 값이 몇 개 있는지 검색하기
+//내가 구현한 것, 오류남 ㅠㅠ
+const val = "bagg";
+const longStr = "my bagg my bag aa";
+const stringSearch = (longStr, val) => {
+  let count = 0;
+  let innerCount = 0;
+
+  for (let i = 0; i < longStr.length; i++) {
+    // 첫 번째 글자가 같을 때만 for문 들어오게
+    if (longStr[i] === val[0]) {
+      // 찾는 string val을 한 단어씩 검사
+      for (let j = 0; j < val.length; j++) {
+        //longStr과 val의 글자가 맞지 않으면, innerCount를 0으로 하고 반복문 탈출
+        if (!longStr[i + j] === val[j]) {
+          innerCount = 0;
+          break;
+        } else {
+          //longStr과 val의 글자가 맞을 때마다 innerCount +1
+          innerCount++;
+          //  console.log(innerCount)
+        }
+        // j가 마지막이고, innerCount가 val의 글자수와 같을 때
+        if (j === val.length - 1 && innerCount === val.length) {
+          // count +1 하고, innerCount를 초기화
+          count++;
+          innerCount = 0;
+        }
+      }
+    }
+  }
+  console.log("count : " + count);
+  return count;
+};
+
+stringSearch(longStr, val);
+
+//정답... 훨씬 깔끔하다 왜 나는 innerCount를 한거지? ...??
+function naiveSearch(long, short) {
+  var count = 0;
+  for (var i = 0; i < long.length; i++) {
+    for (var j = 0; j < short.length; j++) {
+      if (short[j] !== long[i + j]) break;
+      if (j === short.length - 1) count++;
+    }
+  }
+  return count;
+}
+
+naiveSearch("lorie loled", "lol");
