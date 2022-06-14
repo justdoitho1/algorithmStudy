@@ -227,3 +227,26 @@ const dupCount = (arr) => {
 
 const exArr = [3, 2, 4];
 console.log(dupCount(exArr));
+
+//map을 활용한 풀이
+function solution(arr) {
+  var answer = [];
+  var map = new Map();
+  arr.forEach((element) => {
+    if (map.has(element)) {
+      //---이전에 키값을 지정한 적이 있는지 확인해서 있으면 중복 횟수를 +1 해서 다시 저장합니다.
+      map.set(element, map.get(element) + 1);
+    } else {
+      //---만약 한 번도 나오지 않아서 Map에 없는 키라면, 중복 횟수를 1로 저장합니다.
+      map.set(element, 1);
+    }
+  });
+  map.forEach((value) => {
+    if (value > 1) {
+      //---이렇게 만들어진 Map에서 value값을 확인해서 1을 초과하는 경우만 결과 배열에 추가합니다.
+      answer.push(value);
+    }
+  });
+  if (answer.length == 0) answer.push(-1); //---마지막 부분에서는 빈 배열인 경우에 -1을 추가합니다.
+  return answer;
+}
