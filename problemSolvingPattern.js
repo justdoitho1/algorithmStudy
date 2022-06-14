@@ -122,7 +122,7 @@ sumZero([-4, -3, -52, 41, 0, 1, 2, 3, 10]);
 
 // console.log(countUniqueValues2(arr));
 /**
- * Mutiple Pointer 연습 
+ * Mutiple Pointer 연습
  * @param {} rowArr
  * @returns
  */
@@ -171,22 +171,59 @@ function countUniqueValues(rowArr) {
 console.log(countUniqueValues([1, 2, 3, 3, 3, 3, 5, 7, 10]));
 
 /**
- * 다중 포인터 문제 2 
- * @param  {...any} args 
- * @returns 
+ * 다중 포인터 문제 2
+ * @param  {...any} args
+ * @returns
  */
 
 function areThereDuplicates(...args) {
   // Two pointers
-  args.sort((a,b) => a > b);
+  args.sort((a, b) => a > b);
   let start = 0;
   let next = 1;
-  while(next < args.length){
-    if(args[start] === args[next]){
-        return true
+  while (next < args.length) {
+    if (args[start] === args[next]) {
+      return true;
     }
     start++;
     next++;
   }
-  return false
+  return false;
 }
+
+//배열에서 중복 개수 찾아서 리턴하기
+// 네이버 부스트캠프 예시 문제로 나와 있어서 간단하게 풀어봄!
+const dupCount = (arr) => {
+  //배열을 객체에다가 넣기
+  //배열 담을 객체 선언
+  // 배열 length 만큼 돌리기
+  // 객체[배열원소] = 객체[배열원소] === undefined ? 1 : 객체[배열원소]+1
+  // 원소 : 개수
+  // 개수가 1개 이상인 것만 filter 하기. filter 결과 없으면 return [-1]
+  //객체 for문
+  // obj[key] > 0
+  // retArr에 push
+  // retArr.length === 0일 때 return [-1]
+
+  let obj = {};
+  let retArr = [];
+  for (let i = 0; i < arr.length; i++) {
+    obj[arr[i]] = (obj[arr[i]] || 0) + 1;
+  }
+  console.log(obj);
+
+  for (key in obj) {
+    if (obj[key] > 1) {
+      retArr.push(obj[key]);
+    }
+  }
+
+  if (retArr.length === 0) {
+    return [-1];
+  } else {
+    return retArr;
+  }
+};
+
+const exArr = [3, 2, 4];
+console.log(dupCount(exArr));
