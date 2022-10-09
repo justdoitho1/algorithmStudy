@@ -1,4 +1,5 @@
 const  isThisSame = require('./stringAndArray');
+const stringCompression = require('./stringAndArray');
 
 test('같은 string일 때', ()=>{
     expect(isThisSame('hey','hey')).toBe(true);
@@ -21,5 +22,3 @@ test("같은 원소로 구성된 숫자string이 들어왔을 때 ", ()=>{
 //     expect(isThisSame(78321, 12387)).
 // });
 
-
-const sum = require('./stringAndArray');
